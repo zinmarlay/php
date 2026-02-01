@@ -1,35 +1,26 @@
 <?php
 
-class Animal
-{
-    protected $name;
-
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
-
-    static function info()
-    {
-        echo "Animal Class <br>";
-    }
-
-    public function hello()
-    {
-        echo "Hello $this->name <br>";
-    }
+interface Animal {
+    public function hello();
 }
-class Dog extends Animal
-{
-    public function run()
-    {
-        echo "$this->name is running... <br>";
+
+class Cat implements Animal {
+    public function hello() {
+        echo "Hello Cat <br>";
     }
 }
 
-Dog::info();
+class Dog implements Animal {
+    public function hello() {
+        echo "Hello Dog <br>";
+    }
+}
+function app(Animal $obj) {
+    $obj->hello();
+}
 
-$dog = new Dog("Lucy");
-$dog->hello();
+$dog = new Dog;
+$cat = new Cat;
 
-$dog->run();
+app($cat);
+app($dog);
